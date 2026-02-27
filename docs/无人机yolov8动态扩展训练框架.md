@@ -8,9 +8,9 @@
 
 ### 1.1 背景
 
-* 基于 GitHub 下载的 Ultralytics YOLOv8 8.48 源码进行二次开发
-* 训练数据集 **逐步扩充** ，检测目标**动态增加**
-* 需支持：新增类别、新增数据、复用历史模型、避免重复训练、工程化可维护
+- 基于 GitHub 下载的 Ultralytics YOLOv8 8.48 源码进行二次开发
+- 训练数据集 **逐步扩充** ，检测目标**动态增加**
+- 需支持：新增类别、新增数据、复用历史模型、避免重复训练、工程化可维护
 
 ### 1.2 核心设计原则
 
@@ -187,36 +187,36 @@ freeze: [0,1,2]  # 冻结主干，防止旧类别遗忘
 
 `scripts/category_manage.py`
 
-* 加载指定版本类别配置
-* 自动合并所有版本 → 生成 `all_categories.yaml`
-* 维护全局唯一 ID 映射表
-* 支持新增类别后一键更新
+- 加载指定版本类别配置
+- 自动合并所有版本 → 生成 `all_categories.yaml`
+- 维护全局唯一 ID 映射表
+- 支持新增类别后一键更新
 
 ### 4.2 数据合并脚本
 
 `scripts/data_merge.py`
 
-* 按版本合并图片与标注
-* 自动重命名避免文件名冲突
-* 生成全量数据集配置
+- 按版本合并图片与标注
+- 自动重命名避免文件名冲突
+- 生成全量数据集配置
 
 ### 4.3 增量训练脚本（核心）
 
 `scripts/incremental_train.py`
 
-* 加载历史模型
-* 自动适配新类别数
-* 降低学习率、冻结主干网络
-* 防止灾难性遗忘
-* 输出新版本权重
+- 加载历史模型
+- 自动适配新类别数
+- 降低学习率、冻结主干网络
+- 防止灾难性遗忘
+- 输出新版本权重
 
 ### 4.4 其他标准脚本
 
-* `data_preprocess.py`：格式转 YOLO、划分数据集、无人机专属增强（小目标、运动模糊）
-* `train_drone.py`：全量从头训练
-* `eval_drone.py`：mAP、Precision、Recall、**小目标 AP**
-* `export_model.py`：导出 ONNX / TensorRT
-* `visualize_results.py`：训练曲线、检测效果图
+- `data_preprocess.py`：格式转 YOLO、划分数据集、无人机专属增强（小目标、运动模糊）
+- `train_drone.py`：全量从头训练
+- `eval_drone.py`：mAP、Precision、Recall、**小目标 AP**
+- `export_model.py`：导出 ONNX / TensorRT
+- `visualize_results.py`：训练曲线、检测效果图
 
 ---
 
@@ -226,26 +226,29 @@ freeze: [0,1,2]  # 冻结主干，防止旧类别遗忘
 
 1. **新建类别版本配置**
 
-   在 `configs/categories/` 新建 `vX.X.yaml`，继承旧 ID，只追加新类别。
+    在 `configs/categories/` 新建 `vX.X.yaml`，继承旧 ID，只追加新类别。
+
 2. **自动合并全类别**
    bash
 
-   运行
+    运行
 
-   ```
-   python scripts/category_manage.py
-   ```
+    ```
+    python scripts/category_manage.py
+    ```
+
 3. **放入新原始数据**
 
-   放入 `data/raw/vX.X/`
+    放入 `data/raw/vX.X/`
+
 4. **预处理新数据**
    bash
 
-   运行
+    运行
 
-   ```
-   python scripts/data_preprocess.py
-   ```
+    ```
+    python scripts/data_preprocess.py
+    ```
 
 5.（可选）合并到全量数据集
 
@@ -259,14 +262,15 @@ python scripts/data_merge.py
 
 6. **执行增量训练**
 
-   编写 `train_vX.X_incremental.yaml`
-   bash
+    编写 `train_vX.X_incremental.yaml`
+    bash
 
-   运行
+    运行
 
-   ```
-   python scripts/incremental_train.py
-   ```
+    ```
+    python scripts/incremental_train.py
+    ```
+
 7. **评估 & 导出 & 可视化**
 8. **更新 VERSION.md**
 
@@ -298,25 +302,25 @@ plaintext
 ## 七、无人机场景专项优化（内置支持）
 
 1. **小目标优化**
-   * 放大增强
-   * 调整 box loss 增益
-   * 专用小目标 AP 评估
+    - 放大增强
+    - 调整 box loss 增益
+    - 专用小目标 AP 评估
 2. **运动模糊优化**
-   * 模拟无人机抖动模糊增强
+    - 模拟无人机抖动模糊增强
 3. **视角变化优化**
-   * 旋转、透视、缩放增强
+    - 旋转、透视、缩放增强
 4. **部署轻量化**
-   * 支持 FP16 / INT8 量化
-   * 导出 ONNX / TensorRT
+    - 支持 FP16 / INT8 量化
+    - 导出 ONNX / TensorRT
 
 ---
 
 ## 八、使用环境（固定不变）
 
-* Python 3.10
-* PyTorch 2.0+
-* CUDA 11.8+
-* Ultralytics 8.48（源码 editable 安装）
+- Python 3.10
+- PyTorch 2.0+
+- CUDA 11.8+
+- Ultralytics 8.48（源码 editable 安装）
 
 ---
 
