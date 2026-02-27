@@ -1,0 +1,21 @@
+{
+  "include": [
+    "ultralytics",
+    "object_detection_tutorial.py"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.*",
+    "tests"
+  ],
+  "reportMissingImports": "none",
+  "reportMissingTypeStubs": "none",
+  "reportUnknownMemberType": "none",
+  "reportUnknownVariableType": "none",
+  "reportUnknownArgumentType": "none",
+  "reportGeneralTypeIssues": "none",
+  "pythonVersion": "3.8",
+  "typeCheckingMode": "basic",
+  "stubPath": ""
+}
