@@ -1,0 +1,20 @@
+{
+  "name": "Ultralytics YOLO Wiki",
+  "description": "Ultralytics YOLOv8 目标检测框架文档",
+  "language": "zh",
+  "home": "README.md",
+  "sidebar": [
+    {
+      "title": "首页",
+      "path": "README.md"
+    },
+    {
+      "title": "项目文档",
+      "path": "docs/README.md"
+    },
+    {
+      "title": "无人机YOLOv8动态扩展训练框架",
+      "path": "docs/无人机yolov8动态扩展训练框架.md"
+    }
+  ]
+}
