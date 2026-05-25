@@ -1,14 +1,6 @@
 {
-  "include": [
-    "ultralytics",
-    "object_detection_tutorial.py"
-  ],
-  "exclude": [
-    "**/node_modules",
-    "**/__pycache__",
-    "**/.*",
-    "tests"
-  ],
+  "include": ["ultralytics", "object_detection_tutorial.py"],
+  "exclude": ["**/node_modules", "**/__pycache__", "**/.*", "tests"],
   "reportMissingImports": "none",
   "reportMissingTypeStubs": "none",
   "reportUnknownMemberType": "none",
